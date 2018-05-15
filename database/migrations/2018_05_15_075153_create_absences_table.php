@@ -17,7 +17,7 @@ class CreateAbsencesTable extends Migration
             $table->integer('id');
             $table->string('name');
             $table->string('date');
-            $table->float('work time')->nullable();
+            $table->float('work_time')->nullable();
             $table->boolean('absent')->nullable();
             
             $table->timestamps();
