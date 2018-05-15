@@ -80,6 +80,7 @@
                             <tr>
                                 <th width="30">No</th>
                                 <th>Name</th>
+                                <th>Date</th>
                                 <th>Work Time</th>
                                 <th>Absence</th>
                                 
@@ -121,6 +122,7 @@
                       columns: [
                         {data: 'id', name: 'id'},
                         {data: 'name', name: 'name'},
+                        {data: 'date', name: 'date'},
                         {data: 'work_time', name: 'work_time'},
                         {data: 'absent', name: 'absent'},
                       ]

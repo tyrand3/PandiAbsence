@@ -81,6 +81,13 @@ class AbsenController extends Controller
                     $absence->id=$value->id;
                     $absence->name=$value->name;
                     
+                    $date=$value->date;
+
+                    $absence->date=$value->date;
+                    
+
+
+
                     $string =$value->work_time;
                     $float = (double)$string;
                     $absence ->work_time=$float;
