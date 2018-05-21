@@ -75,14 +75,24 @@
                     </h4>
                 </div>
                 <div class="panel-body">
-                    <table id="absences-table" class="table table-striped">
+                    <table  id="absences-table" class="table table-striped" width=15>
                         <thead>
-                            <tr>
-                                <th width="30">No</th>
+                            <tr >
+                                
                                 <th>Name</th>
                                 <th>Date</th>
-                                <th>Work Time</th>
+                                <th>Timetable</th>
+                                <th>On Duty</th>
+                                <th>Off Duty</th>
+                                <th>Clock In</th>
+                                <th>Clock Out</th>
+                                <th>Late</th>
+                                <th>Early</th>
                                 <th>Absence</th>
+                                <th>OT Time</th>
+                                <th>Work Time</th>
+                                <th>Department</th>
+                                <th>ATT_Time</th>
                                 
                             </tr>
                         </thead>
@@ -120,11 +130,22 @@
                       serverSide: true,
                       ajax: "{{ route('api.absence') }}",
                       columns: [
-                        {data: 'id', name: 'id'},
-                        {data: 'name', name: 'name'},
-                        {data: 'date', name: 'date'},
-                        {data: 'work_time', name: 'work_time'},
+                        
+                        {data: 'Name', name: 'Name'},
+                        {data: 'Date', name: 'Date'},
+                        {data: 'Timetable', name: 'Timetable'},
+                        {data: 'On Duty', name: 'On Duty'},
+                        {data: 'Off Duty', name: 'Off Duty'},
+                        {data: 'Clock In', name: 'Clock In'},
+                        {data: 'Clock Out', name: 'Clock Out'},
+                        {data: 'Late', name: 'Late'},
+                        {data: 'Early', name: 'Early'},
                         {data: 'absent', name: 'absent'},
+                        {data: 'OT Time', name: 'OT Time'},
+                        {data: 'Work Time', name: 'Work Time'},
+                        {data: 'Department', name: 'Department'}, 
+                        {data: 'ATT_Time', name: 'ATT_Time'}, 
+                        
                       ]
                     });
 
