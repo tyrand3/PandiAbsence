@@ -1,7 +1,7 @@
-<div class="modal" id="modals-form" tabindex="1" role="dialog" aria-hidden="true" data-backdrop="static">
+<div class="modal" id="modal-form" tabindex="1" role="dialog" aria-hidden="true" data-backdrop="static">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <form id="form-absence" method="post" class="form-horizontal" data-toggle="validator" enctype="multipart/form-data">
+            <form id="form-contact" method="post" class="form-horizontal" data-toggle="validator" enctype="multipart/form-data">
                 {{ csrf_field() }} {{ method_field('POST') }}
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -21,13 +21,20 @@
                     </div>
 
                     <div class="form-group">
-                      <label for="Work Time" class="col-md-3 control-label">Work Time</label>
+                      <label for="email" class="col-md-3 control-label">Email</label>
                       <div class="col-md-6">
-                          <input type="Work Time" id="Work Time" name="Work Time" class="form-control" required>
+                          <input type="email" id="email" name="email" class="form-control" required>
                           <span class="help-block with-errors"></span>
                       </div>
                     </div>
 
+                    <div class="form-group">
+                        <label for="email" class="col-md-3 control-label">Photo</label>
+                        <div class="col-md-6">
+                            <input type="file" id="photo" name="photo" class="form-control">
+                            <span class="help-block with-errors"></span>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="modal-footer">
@@ -43,7 +50,7 @@
 <div class="modal" id="modal-exim" tabindex="1" role="dialog" aria-hidden="true" data-backdrop="static">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <form  method="post" action="{{    route ('absence.import')    }}" class="form-horizontal" data-toggle="validator" enctype="multipart/form-data">
+            <form  method="post" action="{{    route ('contact.import')    }}" class="form-horizontal" data-toggle="validator" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -57,7 +64,7 @@
                     <div class="form-group">
                         <label for="export" class="col-md-3 control-label">Export</label>
                         <div class="col-md-6">
-                        <a href="{{ route('absence.export') }}" class="btn btn-success">Export</a>    
+                        <a href="{{ route('contact.export') }}" class="btn btn-success">Export</a>    
                         <span class="help-block with-errors"></span>
                         </div>
                     </div>
