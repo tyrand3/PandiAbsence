@@ -49,24 +49,24 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true"> &times; </span>
                     </button>
-                    <h3 class="modal-title">Export/Import</h3>
+                    <h3 class="modal-title">Import/export attendance data</h3>
                 </div>
 
                 <div class="modal-body">
+
+                    <div class="form-group">
+                        <label for="file" class="col-md-3 control-label">Import</label>
+                        <div class="col-md-6">
+                            <input type="file" id="file" name="file" class="form-control" autofocus required>
+                            <span class="help-block with-errors"></span>
+                        </div>
+                    </div>
                    
                     <div class="form-group">
                         <label for="export" class="col-md-3 control-label">Export</label>
                         <div class="col-md-6">
                         <a href="{{ route('absence.export') }}" class="btn btn-success">Export</a>    
                         <span class="help-block with-errors"></span>
-                        </div>
-                    </div>
-
-                <div class="form-group">
-                        <label for="file" class="col-md-3 control-label">Import</label>
-                        <div class="col-md-6">
-                            <input type="file" id="file" name="file" class="form-control" autofocus required>
-                            <span class="help-block with-errors"></span>
                         </div>
                     </div>
                     
