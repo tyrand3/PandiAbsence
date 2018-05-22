@@ -23,7 +23,15 @@ Route::get('export', 'ContactController@contactExport')->name('contact.export');
 Route::post('import', 'ContactController@contactImport')->name('contact.import');
 
 Route::get('/absence', function () {
-    return view('welcomes');
+    return view('rawdata');
+});
+
+Route::get('/manage', function () {
+    return view('manage');
+});
+
+Route::get('/summary', function () {
+    return view('summary');
 });
 
 Route::resource('absence', 'AbsenController', [
