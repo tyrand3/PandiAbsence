@@ -74,16 +74,15 @@
                         <a onclick="eximForm()" class="btn btn-primary pull-right" style="margin-top: -8px;">Export/Import</a>
                     </h4>
                 </div>
-                <div class="panel-body">
-                    <table  id="absences-table" class="table table-striped" width=15>
-                        <thead>
+                <div class="panel-body table-responsive">
+                    <table id="absences-table" class="table table-striped table-bordered">
+                        <thead class="thead-dark">
                             <tr >
-                                
                                 <th>Name</th>
                                 <th>Date</th>
-                                <th>Timetable</th>
+                                <!-- <th>Timetable</th>
                                 <th>On Duty</th>
-                                <th>Off Duty</th>
+                                <th>Off Duty</th> -->
                                 <th>Clock In</th>
                                 <th>Clock Out</th>
                                 <th>Late</th>
@@ -133,9 +132,9 @@
                         
                         {data: 'Name', name: 'Name'},
                         {data: 'Date', name: 'Date'},
-                        {data: 'Timetable', name: 'Timetable'},
-                        {data: 'On Duty', name: 'On Duty'},
-                        {data: 'Off Duty', name: 'Off Duty'},
+                        // {data: 'Timetable', name: 'Timetable'},
+                        // {data: 'On Duty', name: 'On Duty'},
+                        // {data: 'Off Duty', name: 'Off Duty'},
                         {data: 'Clock In', name: 'Clock In'},
                         {data: 'Clock Out', name: 'Clock Out'},
                         {data: 'Late', name: 'Late'},
