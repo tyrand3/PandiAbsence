@@ -29,10 +29,6 @@ Route::get('/summary', function () {
     return view('summary');
 });
 
-Route::get('/summary', function () {
-    return view('summary');
-});
-
 Route::resource('absence', 'AbsenController', [
 	'except' => ['create']
 ]);
