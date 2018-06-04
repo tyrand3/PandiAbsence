@@ -15,7 +15,7 @@ class AbsenController extends Controller
     public function index()
     {
         //
-        return view('welcomes');
+        return view('rawdata');
     }
 
 
