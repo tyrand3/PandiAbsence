@@ -12,23 +12,30 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('summary');
 });
 
-Route::resource('contact', 'ContactController', [
-	'except' => ['create']
-]);
-Route::get('api/contact', 'ContactController@apiContact')->name('api.contact');
-Route::get('export', 'ContactController@contactExport')->name('contact.export');
-Route::post('import', 'ContactController@contactImport')->name('contact.import');
+
 
 Route::get('/absence', function () {
     return view('welcomes');
 });
 
+Route::get('/summary', function () {
+    return view('summary');
+});
+
 Route::resource('absence', 'AbsenController', [
 	'except' => ['create']
 ]);
+
+Route::resource('summary', 'SummaryController', [
+	'except' => ['create']
+]);
+
+Route::get('api/summary', 'SummaryController@apiSummary')->name('api.summary');
+Route::get('exports', 'SummaryController@summaryExport')->name('summary.export');
+Route::post('imports', 'SummaryController@summaryImport')->name('summary.import');
 
 Route::get('api/absence', 'AbsenController@apiAbsence')->name('api.absence');
 Route::get('export', 'AbsenController@absenceExport')->name('absence.export');

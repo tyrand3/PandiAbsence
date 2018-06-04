@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Summary extends Model
 {
-    protected $fillable = ['id', 'name','date', 'work time','absent'];
+    protected $fillable = ['nama','total_hari_kerja', 'total_absen','att_time'];
 }

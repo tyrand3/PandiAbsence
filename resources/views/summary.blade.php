@@ -75,24 +75,17 @@
                     </h4>
                 </div>
                 <div class="panel-body">
-                    <table  id="absences-table" class="table table-striped">
+                    <table  id="summary-table" class="table table-striped">
                         <thead>
                             <tr >
                                 
-                                <th>Name</th>
-                                <th>Date</th>
+                                <th>name</th>
+                                <th>total_hari_kerja</th>
 
      
-                                <th>Clock In</th>
-                                <th>Clock Out</th>
-                                <th>Late</th>
-                                <th>Early</th>
-                                <th>Absence</th>
-                                <th>OT Time</th>
-                                <th>Work Time</th>
-                                <th>Department</th>
-                                <th>ATT_Time</th>
-                                
+                                <th>total_absen</th>
+                                <th>total_work_time</th>
+                              
                             </tr>
                         </thead>
                         <tbody></tbody>
@@ -102,7 +95,7 @@
         </div>
       </div>
 
-      @include('forms')
+      @include('form')
 
     </div> <!-- /container -->
 
@@ -124,24 +117,16 @@
     <script src="{{ asset('assets/bootstrap/js/ie10-viewport-bug-workaround.js') }}"></script>
 
     <script type="text/javascript">
-      var table = $('#absences-table').DataTable({
+      var table = $('#summary-table').DataTable({
                       processing: true,
                       serverSide: true,
-                      ajax: "{{ route('api.absence') }}",
+                      ajax: "{{ route('api.summary') }}",
                       columns: [
                         
-                        {data: 'Name', name: 'Name'},
-                        {data: 'Date', name: 'Date'},
-           
-                        {data: 'Clock In', name: 'Clock In'},
-                        {data: 'Clock Out', name: 'Clock Out'},
-                        {data: 'Late', name: 'Late'},
-                        {data: 'Early', name: 'Early'},
-                        {data: 'absent', name: 'absent'},
-                        {data: 'OT Time', name: 'OT Time'},
-                        {data: 'Work Time', name: 'Work Time'},
-                        {data: 'Department', name: 'Department'}, 
-                        {data: 'ATT_Time', name: 'ATT_Time'}, 
+                        {data: 'nama', name: 'nama'},
+                        {data: 'total_hari_kerja', name: 'total_hari_kerja'},
+                        {data: 'total_absen', name: 'total_absen'},
+                        {data: 'att_time', name: 'att_time'},
                         
                       ]
                     });
@@ -252,8 +237,8 @@
 
 
     function eximForm() {
-        $('#modal-exim').modal('show');
-        $('#modal-exim form')[0].reset();
+        $('#modal-exims').modal('show');
+        $('#modal-exims form')[0].reset();
        
       }
     </script>

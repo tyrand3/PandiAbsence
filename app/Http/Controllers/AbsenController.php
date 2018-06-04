@@ -164,12 +164,13 @@ class AbsenController extends Controller
                     $time = str_replace('.', ':', $var);
                     $absence['ATT_Time']=date('H:i', strtotime($time));
                     
-      
+                    //$users = DB::table('absences')->whereBetween('Date', ['2017-11-13', '2017-11-15'])->SUM('ATT_Time');
+
+                    
+
                     $absence->save();
                 }
-           
-         
-
+              
             }
 
             
