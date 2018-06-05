@@ -18,7 +18,7 @@
                 </h4>
             </div>
             <div class="panel-body table-responsive">
-                <div class="row" id="date-filter">
+                <form class="row" id="date-filter">
                     <div class="col-md-3 col-md-offset-5 form-group">
                         <label for="fromDate" class="form-label">Dari tanggal:</label>
                         <input type="text" name="fromDate" id="fromDate" class="form-control">
@@ -31,7 +31,7 @@
                         <label for="date-submit" class="form-label">&nbsp;</label>
                         <input type="submit" name="date-submit" id="date-submit" value="Filter" class="btn btn-info">
                     </div>
-                </div>
+                </form>
                 <table id="absences-table" class="table table-striped table-bordered">
                     <thead>
                         <tr >
@@ -63,8 +63,7 @@
 </div> <!-- /container -->
 @endsection
 
-@section('js')>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+@section('js')
 <script type="text/javascript">
     $( function() {
         $("#fromDate, #toDate").datepicker({
@@ -72,33 +71,42 @@
             changeMonth: true,
             changeYear: true
         });
-        $("#fromDate, #toDate").datepicker($.datepicker.regional['id']);
+        // $("#fromDate, #toDate").datepicker($.datepicker.regional['id']);
         $("#fromDate, #toDate").datepicker().datepicker("setDate", new Date());
     });
 
     var table = $('#absences-table').DataTable({
-      processing: true,
-      serverSide: true,
-      ajax: "{{ route('api.absence') }}",
-      columns: [
+        processing: true,
+        serverSide: true,
+        ajax: {
+            url: '{{ route('api.absence') }}',
+                data: function(d) {
+                    d.from = $('input[name=fromDate]').val();
+                    d.to = $('input[name=toDate]').val();
+                }
+            },
+        columns: [
+            {data: 'Name', name: 'Name'},
+            {data: 'Date', name: 'Date'},
+            // {data: 'Timetable', name: 'Timetable'},
+            // {data: 'On Duty', name: 'On Duty'},
+            // {data: 'Off Duty', name: 'Off Duty'},
+            {data: 'Clock In', name: 'Clock In'},
+            {data: 'Clock Out', name: 'Clock Out'},
+            {data: 'Late', name: 'Late'},
+            {data: 'Early', name: 'Early'},
+            {data: 'absent', name: 'absent'},
+            {data: 'OT Time', name: 'OT Time'},
+            {data: 'Work Time', name: 'Work Time'},
+            {data: 'Department', name: 'Department'}, 
+            {data: 'ATT_Time', name: 'ATT_Time'}, 
+        ]
+    });
 
-      {data: 'Name', name: 'Name'},
-      {data: 'Date', name: 'Date'},
-                        // {data: 'Timetable', name: 'Timetable'},
-                        // {data: 'On Duty', name: 'On Duty'},
-                        // {data: 'Off Duty', name: 'Off Duty'},
-                        {data: 'Clock In', name: 'Clock In'},
-                        {data: 'Clock Out', name: 'Clock Out'},
-                        {data: 'Late', name: 'Late'},
-                        {data: 'Early', name: 'Early'},
-                        {data: 'absent', name: 'absent'},
-                        {data: 'OT Time', name: 'OT Time'},
-                        {data: 'Work Time', name: 'Work Time'},
-                        {data: 'Department', name: 'Department'}, 
-                        {data: 'ATT_Time', name: 'ATT_Time'}, 
-                        
-                        ]
-                    });
+    $('#date-filter').on('submit', function(e) {
+        table.draw();
+        e.preventDefault();
+    });
 
     function addForm() {
         save_method = "add";
