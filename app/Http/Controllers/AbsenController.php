@@ -9,6 +9,7 @@ use Yajra\DataTables\DataTables;
 use Excel;
 use App\Absence;
 use App\Summary;
+use Carbon\Carbon;
 
 class AbsenController extends Controller
 {
@@ -42,8 +43,9 @@ class AbsenController extends Controller
     }
 
 
-    public function apiAbsence()
+    public function apiAbsence(Request $request)
     {
+<<<<<<< HEAD
         $absence =Absence::select('Name','Date','Clock In','Clock Out','Late','Early','absent','OT Time',
         'Work Time','Department','ATT_Time')->whereBetween('Date',['2017-11-16', '2017-11-16']);
         
@@ -78,6 +80,34 @@ class AbsenController extends Controller
 
 
 
+=======
+        $absence = Absence::all();
+
+        return Datatables::of($absence)
+        ->editColumn('Date', function ($user) {
+            return $user->Date ? with(new Carbon($user->Date))->format('d M Y') : '';
+        })
+        // ->filter(function($query) use ($request) {
+        //     if ($request->has('from')) {
+        //         $from = Carbon::parse($request->get('from'));
+        //         if ($request->has('to')) {
+        //             $to = Carbon::parse($request->get('to'));
+        //             $query->where('Date', '>=', 'from')->where('Date', '<=', 'to');
+        //         } else {
+        //             $query->where('Date', '>=', 'from');
+        //         }
+        //     }
+        // })
+        ->addColumn('action', function($absence){
+            return '<a href="#" class="btn btn-info btn-xs"><i class="glyphicon glyphicon-eye-open"></i> Show</a> ' .
+            '<a onclick="editForm('. $absence->id .')" class="btn btn-primary btn-xs"><i class="glyphicon glyphicon-edit"></i> Edit</a> ' .
+            '<a onclick="deleteData('. $absence->id .')" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
+        })
+        ->rawColumns(['action'])
+        ->make(true);
+    }
+
+>>>>>>> 1914f580450a2cea12f4bab3767eec19aa79d056
     public function absenceExport(){
         $absence = Absence::select('emp no','name','TimeTable','On Duty','Off Duty','Clock In','Clock Out','Late','Early','Absent', 'work time','date','ATT_Time')->get();
         return Excel::create('data_absence',function($excel) use ($absence){
@@ -89,44 +119,44 @@ class AbsenController extends Controller
 
 
     public function absenceImport(Request $request){
-       if($request->hasFile('file')){
-           $path = $request->file('file')->getRealPath();
-           $data = Excel::load($path, function ($reader){})->get();
-            $totalabsen=0;
+     if($request->hasFile('file')){
+         $path = $request->file('file')->getRealPath();
+         $data = Excel::load($path, function ($reader){})->get();
+         $totalabsen=0;
             // data tersebut tidak empty dan bisa dihitung
-            if(!empty($data)&& $data->count())  {
-                foreach ($data as $key => $value){
-                    $absence = new Absence();
+         if(!empty($data)&& $data->count())  {
+            foreach ($data as $key => $value){
+                $absence = new Absence();
                     $absence['emp no']=$value->emp_no;  //id
 
 
                     $absence['name']=$value->name;  //name 
                     $absence['date']=$value->date; //date
-                     
+
                     
-               
+
 
 
                     $var=$value->date;
                     $date = str_replace('/', '-', $var);
-                  
+
 
 
                     $absence['date']=date('Y-m-d', strtotime($date));
                     
 
-                
+
 
                     $absence['TimeTable']=$value->timetable; //date
-                  
-                  
+
+
                     $absence['On Duty']=$value->on_duty; //On Duty            
                     $var=$value->on_duty;
                     $time = str_replace('.', ':', $var);
                     $absence['On Duty']=date('H:i', strtotime($time));
                     
 
-                
+
 
 
                     $absence['Off Duty']=$value->off_duty; //On Duty
@@ -188,7 +218,7 @@ class AbsenController extends Controller
 
                     $absence->save();
                 }
-              
+
             }
 
             
