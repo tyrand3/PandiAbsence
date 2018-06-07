@@ -44,18 +44,36 @@ class AbsenController extends Controller
 
     public function apiAbsence()
     {
-        $absence = Absence::all();
- 
+        $absence =Absence::select('Name','Date','Clock In','Clock Out','Late','Early','absent','OT Time',
+        'Work Time','Department','ATT_Time')->whereBetween('Date',['2017-11-16', '2017-11-16']);
+        
         return Datatables::of($absence)
             
             ->addColumn('action', function($absence){
                 return '<a href="#" class="btn btn-info btn-xs"><i class="glyphicon glyphicon-eye-open"></i> Show</a> ' .
-                       '<a onclick="editForm('. $absence->id .')" class="btn btn-primary btn-xs"><i class="glyphicon glyphicon-edit"></i> Edit</a> ' .
-                       '<a onclick="deleteData('. $absence->id .')" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
+                       '<a onclick="editForm('. $absence['emp no'] .')" class="btn btn-primary btn-xs"><i class="glyphicon glyphicon-edit"></i> Edit</a> ' .
+                       '<a onclick="deleteData('. $absence['emp no'] .')" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
             })
             ->rawColumns(['action'])->make(true);
     }
 
+
+    public function apiAbsenceDate($startdate, $enddate)
+    {
+  
+        $absence =Absence::select('Name','Date','Clock In','Clock Out','Late','Early','absent','OT Time',
+        'Work Time','Department','ATT_Time')->whereBetween('Date',[$start_date, $end_date]);
+        
+
+        return Datatables::of($absence)
+            
+            ->addColumn('action', function($absence){
+                return '<a href="#" class="btn btn-info btn-xs"><i class="glyphicon glyphicon-eye-open"></i> Show</a> ' .
+                       '<a onclick="editForm('. $absence['emp no'] .')" class="btn btn-primary btn-xs"><i class="glyphicon glyphicon-edit"></i> Edit</a> ' .
+                       '<a onclick="deleteData('. $absence['emp no'] .')" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
+            })
+            ->rawColumns(['action'])->make(true);
+    }
 
 
 

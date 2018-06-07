@@ -32,20 +32,40 @@ class SummaryController extends Controller
             
             $summary = new Summary();
     
+            $total_terlambat=0;
 
-      
+
+
+            $terlambats = DB::table('absences')->where([
+                ['Name', '=', $datas],
+                ['Late', '>', 0],
+                
+            ]);    
+            
+
+            $terlambat=DB::table('absences')->where('Name',$datas,'Late',0);
+
             $harikerja = DB::table('absences')->where([
                 ['Name', '=', $datas],
                 ['absent', '=', 0],
                 
-            ])->count();                
+            ])->count();               
+            
+            
            
             $absen = DB::table('absences')->where('name', $datas)->sum('absent');                
     
             $att_time = DB::table('absences')->where('name', $datas)->sum('ATT_Time'); 
+
+            if($harikerja==0)
+            {
+                $att_time=0;
+            }
+
+
     
             DB::table('summaries')->insert(
-                ['nama' => $datas, 'total_hari_kerja' =>$harikerja, 'total_absen' => $absen,'att_time' => $att_time/10000]
+                ['nama' => $datas, 'total_hari_kerja' =>$harikerja,'terlambat'=>0, 'total_absen' => $absen,'att_time' => $att_time/10000]
             );
 
 
@@ -91,6 +111,7 @@ class SummaryController extends Controller
             })
             ->rawColumns(['action'])->make(true);
     }
+
 
     public function summaryExport(){
         $summary = Summary::select('nama','total_hari_kerja','total_absen','att_time')->get();

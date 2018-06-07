@@ -29,7 +29,8 @@
                     </div>
                     <div class="col-md-1 form-group">
                         <label for="date-submit" class="form-label">&nbsp;</label>
-                        <input type="submit" name="date-submit" id="date-submit" value="Filter" class="btn btn-info">
+                             
+                        <input type="submit" onclick="addData()" name="date-submit" id="date-submit" value="Filter" class="btn btn-info">
                     </div>
                 </div>
                 <table id="absences-table" class="table table-striped table-bordered">
@@ -49,7 +50,7 @@
                                 <th>Work Time</th>
                                 <th>Department</th>
                                 <th>ATT_Time</th>
-                            </tr>
+                                                </tr>
                         </thead>
                         <tbody></tbody>
                     </table>
@@ -82,8 +83,8 @@
       ajax: "{{ route('api.absence') }}",
       columns: [
 
-      {data: 'Name', name: 'Name'},
-      {data: 'Date', name: 'Date'},
+                        {data: 'Name', name: 'Name'},
+                        {data: 'Date', name: 'Date'},
                         // {data: 'Timetable', name: 'Timetable'},
                         // {data: 'On Duty', name: 'On Duty'},
                         // {data: 'Off Duty', name: 'Off Duty'},
@@ -96,7 +97,8 @@
                         {data: 'Work Time', name: 'Work Time'},
                         {data: 'Department', name: 'Department'}, 
                         {data: 'ATT_Time', name: 'ATT_Time'}, 
-                        
+                 //       {data: 'action', name: 'action', orderable: false, searchable: false}
+                      
                         ]
                     });
 
@@ -130,7 +132,7 @@
   });
     }
 
-    function deleteData(id){
+  function deleteData(id){
       var csrf_token = $('meta[name="csrf-token"]').attr('content');
       swal({
           title: 'Are you sure?',
