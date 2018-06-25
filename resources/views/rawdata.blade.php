@@ -19,6 +19,7 @@
             </div>
             <div class="panel-body table-responsive">
                 <div class="row" id="date-filter">
+               
                     <div class="col-md-3 col-md-offset-5 form-group">
                         <label for="fromDate" class="form-label">Dari tanggal:</label>
                         <input type="text" name="fromDate" id="fromDate" class="form-control">
@@ -28,7 +29,8 @@
                         <input type="text" name="toDate" id="toDate" class="form-control">
                     </div>
                     <div class="col-md-1 form-group">
-                        <label for="date-submit" class="form-label">&nbsp;</label>
+
+                        <label <a href="{{ route('api.absenceDate') }}" for="date-submit" class="form-label">&nbsp;</label>
                              
                         <input type="submit" onclick="addData()" name="date-submit" id="date-submit" value="Filter" class="btn btn-info">
                     </div>

@@ -44,3 +44,9 @@ Route::post('imports', 'SummaryController@summaryImport')->name('summary.import'
 Route::get('api/absence', 'AbsenController@apiAbsence')->name('api.absence');
 Route::get('export', 'AbsenController@absenceExport')->name('absence.export');
 Route::post('import', 'AbsenController@absenceImport')->name('absence.import');
+
+Route::get('/test', 'AbsenController@apiAbsenceDate')->name('api.absenceDate');
+Route::post('/test', 'Controller@getData')->name('test.store');
+
+//Route::get('/test2', 'AbsenController@test');
+Route::post('/test2', 'AbsenController@getData')->name('test.store');

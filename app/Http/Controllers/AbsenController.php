@@ -45,9 +45,8 @@ class AbsenController extends Controller
 
     public function apiAbsence(Request $request)
     {
-<<<<<<< HEAD
         $absence =Absence::select('Name','Date','Clock In','Clock Out','Late','Early','absent','OT Time',
-        'Work Time','Department','ATT_Time')->whereBetween('Date',['2017-11-16', '2017-11-16']);
+        'Work Time','Department','ATT_Time')->whereBetween('Date',['2017-13-16', '2018-12-16']);
         
         return Datatables::of($absence)
             
@@ -80,34 +79,6 @@ class AbsenController extends Controller
 
 
 
-=======
-        $absence = Absence::all();
-
-        return Datatables::of($absence)
-        ->editColumn('Date', function ($user) {
-            return $user->Date ? with(new Carbon($user->Date))->format('d M Y') : '';
-        })
-        // ->filter(function($query) use ($request) {
-        //     if ($request->has('from')) {
-        //         $from = Carbon::parse($request->get('from'));
-        //         if ($request->has('to')) {
-        //             $to = Carbon::parse($request->get('to'));
-        //             $query->where('Date', '>=', 'from')->where('Date', '<=', 'to');
-        //         } else {
-        //             $query->where('Date', '>=', 'from');
-        //         }
-        //     }
-        // })
-        ->addColumn('action', function($absence){
-            return '<a href="#" class="btn btn-info btn-xs"><i class="glyphicon glyphicon-eye-open"></i> Show</a> ' .
-            '<a onclick="editForm('. $absence->id .')" class="btn btn-primary btn-xs"><i class="glyphicon glyphicon-edit"></i> Edit</a> ' .
-            '<a onclick="deleteData('. $absence->id .')" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
-        })
-        ->rawColumns(['action'])
-        ->make(true);
-    }
-
->>>>>>> 1914f580450a2cea12f4bab3767eec19aa79d056
     public function absenceExport(){
         $absence = Absence::select('emp no','name','TimeTable','On Duty','Off Duty','Clock In','Clock Out','Late','Early','Absent', 'work time','date','ATT_Time')->get();
         return Excel::create('data_absence',function($excel) use ($absence){
@@ -229,5 +200,27 @@ class AbsenController extends Controller
         return back();
     }
 
+
+  
+    public function getData(Request $request)
+    {
+        echo $request['nama-libur'];
+        echo $request['awal-cuti'];
+        echo $request['akhir-cuti'];
+        echo $request['berlaku-cuti'];
+          
+        
+
+    }
+
+    public function stores()
+    {
+    $input = Input::only('name','email','password');            
+    $user = new User;
+    $user->name = $input['name'];
+    $user->email = $input['email'];
+    $user->password = Hash::make($input['password']);
+    $user->save();
+    }
 
 }
