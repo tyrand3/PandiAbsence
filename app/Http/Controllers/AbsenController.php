@@ -204,15 +204,31 @@ class AbsenController extends Controller
   
     public function getDataLibur(Request $request)
     {
-        $nama_libur= $request->all();
+        $nama_libur= $request['nama-libur'];
         $awal_libur= $request['awal-libur'];
         $akhir_libur= $request['akhir-libur'];
         $berlaku_libur= $request['berlaku-libur'];
 
+
+
         
-       
+        $absence= Absence::whereBetween('Date', ['2017-12-1', '2017-12-1'])->update([
+            
+            'Hari_libur' => 'Libur'+'MAULID NABI',
+            //'On Duty' => NULL,
+           // 'Off Duty' => NULL,
+            
+            'Clock In' => NULL,
+            'Clock Out' => NULL,
+            'Late' => NULL,
+            'Early' => NULL,
+            'OT Time' => NULL,
+            'Work Time' => NULL,
+            'ATT_Time' => NULL,
+            'absent' => 0,
+            ]);
         
-      $absences = Absence::findOrfail(2);
+     
 
         
      
@@ -225,6 +241,26 @@ class AbsenController extends Controller
         $awal_cuti= $request['awal-cuti'];
         $akhir_cuti= $request['akhir-cuti'];
         $berlaku_cuti= $request['berlaku-cuti'];
+
+        $absence= Absence::whereBetween('Date', ['2017-12-04', '2017-12-05'])->where('Name','Abdul')->update([
+            
+            'Hari_libur' => 'cuti/izin sakit',
+            //'On Duty' => NULL,
+           // 'Off Duty' => NULL,
+            
+            'Clock In' => NULL,
+            'Clock Out' => NULL,
+            'Late' => NULL,
+            'Early' => NULL,
+            'OT Time' => NULL,
+            'Work Time' => NULL,
+            'ATT_Time' => NULL,
+            'absent' => 0,
+            ]);
+        
+     
+
+        
 
     }
 

@@ -16,16 +16,12 @@
 					<h2 class="panel-title"><a data-toggle="collapse" data-parent="accordion" href="#collapse1">Liburan</a></h2>
 				</div>
 				<div class="panel-collapse collapse in" id="collapse1">
-<<<<<<< HEAD
 					<form class="panel-body" id="libur-form" action="{{ route('submit.libur') }}" method="post">
 						<div class="form-group">
 							<label for="nama-libur" class="control-label">Nama Libur:</label>
 							{{ csrf_field()}}
 							<input type="text" name="nama-libur" class="form-control" placeholder="contoh: Idul Fitri">
 						</div>
-=======
-					<form class="panel-body" id="libur-form" action="{{ route('test.store') }}" method="post">
->>>>>>> 7d755159fbf26f73d476d631918b1f2f4312e9d8
 						<div class="form-row">
 							<div class="form-group col-md-6" style="padding-left: 0">	
 								<label for="nama-libur" class="control-label">Nama Libur:</label>
@@ -52,16 +48,12 @@
 					<h2 class="panel-title"><a data-toggle="collapse" data-parent="accordion" href="#collapse2">Cuti/Izin</a></h2>
 				</div>
 				<div class="panel-collapse collapse" id="collapse2">
-<<<<<<< HEAD
 					<form class="panel-body" id="cuti-form" action="{{ route('submit.cuti') }}" method="post">
 						<div class="form-group">
 							<label for="nama-cuti" class="control-label">Alasan:</label>
 							{{ csrf_field()}}
 							<input type="text" name="nama-cuti" class="form-control" placeholder="contoh: Sakit">
 						</div>
-=======
-					<form class="panel-body" id="cuti-form" action="{{ route('test.store') }}" method="post">
->>>>>>> 7d755159fbf26f73d476d631918b1f2f4312e9d8
 						<div class="form-row">
 							<div class="form-group col-md-6" style="padding-left: 0">
 								<label for="nama-cuti" class="control-label">Alasan:</label>
@@ -88,7 +80,6 @@
 					<h2 class="panel-title"><a data-toggle="collapse" data-parent="accordion" href="#collapse3">Perjalanan Dinas</a></h2>
 				</div>
 				<div class="panel-collapse collapse" id="collapse3">
-<<<<<<< HEAD
 					<form class="panel-body" id="cuti-form" action="{{ route('submit.perdin') }}" method="post">
 
 						
@@ -197,53 +188,6 @@
 			</div>
 		</div>
 	</div>
-=======
-					<form class="panel-body" id="perdin-form" action="{{ route('test.store') }}" method="post">
-						<div class="form-row">
-							<div class="form-group col-md-6" style="padding-left: 0">
-                <label for="nama-perdin" class="control-label">Alasan:</label>
-                {{ csrf_field()}}
-                <input type="text" name="nama-perdin" class="form-control" placeholder="contoh: Rapat di Kemkominfo">
-              </div>
-              <div class="form-group col-md-6" style="padding-right: 0">
-                <label for="range-perdin" class="control-label">Periode:</label>
-                {{ csrf_field()}}
-                <input type="text" name="range-perdin" id="range-perdin" class="form-control">
-              </div>
-            </div>
-            <div class="form-group">
-             <label for="berlaku-perdin" class="control-label">Berlaku bagi:</label>
-             {{ csrf_field()}}
-             <input type="text" name="berlaku-perdin" class="form-control" placeholder="Meita">
-           </div>
-           <button type="submit" class="btn btn-primary pull-right">Submit</button>
-         </form>
-       </div>
-     </div>
-     <div class="panel panel-danger" id="mesin-rusak-panel">
-      <div class="panel-heading">
-       <h2 class="panel-title"><a data-toggle="collapse" data-parent="accordion" href="#collapse4">Mesin Rusak</a></h2>
-     </div>
-     <div class="panel-collapse collapse" id="collapse4">
-       <form class="panel-body" id="rusak-form" action="{{ route('test.store') }}" method="post">
-         <div class="form-row">
-          <div class="form-group col-md-6" style="padding-left: 0">
-            <label for="range-rusak" class="control-label">Periode:</label>
-            {{ csrf_field()}}
-            <input type="text" name="range-rusak" id="range-rusak" class="form-control" >
-          </div>
-          <div class="form-group col-md-6" style="padding-right: 0">
-            <label for="berlaku-rusak" class="control-label">Berlaku Bagi:</label>
-            {{ csrf_field()}}
-            <input type="text" name="berlaku-rusak" class="form-control" placeholder="Meita" value="">
-          </div>
-          <button type="submit" class="btn btn-primary pull-right">Submit</button>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
->>>>>>> 7d755159fbf26f73d476d631918b1f2f4312e9d8
 </div>
 @endsection
 
