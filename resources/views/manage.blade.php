@@ -9,7 +9,7 @@
 					<h2 class="panel-title"><a data-toggle="collapse" data-parent="accordion" href="#collapse1">Liburan</a></h2>
 				</div>
 				<div class="panel-collapse collapse in" id="collapse1">
-					<form class="panel-body" id="libur-form" action="{{ route('test.store') }}" method="post">
+					<form class="panel-body" id="libur-form" action="{{ route('submit.libur') }}" method="post">
 						<div class="form-group">
 							<label for="nama-libur" class="control-label">Nama Libur:</label>
 							{{ csrf_field()}}
@@ -45,7 +45,7 @@
 					<h2 class="panel-title"><a data-toggle="collapse" data-parent="accordion" href="#collapse2">Cuti/Izin</a></h2>
 				</div>
 				<div class="panel-collapse collapse" id="collapse2">
-					<form class="panel-body" id="cuti-form" action="{{ route('test.store') }}" method="post">
+					<form class="panel-body" id="cuti-form" action="{{ route('submit.cuti') }}" method="post">
 						<div class="form-group">
 							<label for="nama-cuti" class="control-label">Alasan:</label>
 							{{ csrf_field()}}
@@ -84,7 +84,7 @@
 
 
 				<div class="panel-collapse collapse" id="collapse3">
-					<form class="panel-body" id="cuti-form" action="{{ route('test.store') }}" method="post">
+					<form class="panel-body" id="cuti-form" action="{{ route('submit.perdin') }}" method="post">
 
 						
 
@@ -99,21 +99,38 @@
 
 						<div class="form-row">
 							<div class="form-group col-md-6" style="padding-left: 0">
-								<label for="begin-perdin" class="control-label">Dari pukul:</label>
+								<label for="begin-perdin" class="control-label">Dari tanggal:</label>
 								{{ csrf_field()}}
-								<input type="text" name="begin-perdin" class="form-control" placeholder="05 Jun 2018 09:00">
+								<input type="text" name="awal-perdin" class="form-control" placeholder="05 Jun 2018">
 							</div>
 
+						
+
+
+
+							<div class="form-group col-md-6" style="padding-right: 0">
+								<label for="end-perdin" class="control-label">Sampai tanggal:</label>
+								{{ csrf_field()}}
+								<input type="text" name="berakhir-perdin" class="form-control" placeholder="6 Jun 2018">
+							</div>
+
+
+							<div class="form-row">
+							<div class="form-group col-md-6" style="padding-left: 0">
+								<label for="begin-perdin" class="control-label">Dari pukul:</label>
+								{{ csrf_field()}}
+								<input type="text" name="awal-perdin" class="form-control" placeholder="09:00">
+							</div>
+
+						
 
 
 
 							<div class="form-group col-md-6" style="padding-right: 0">
 								<label for="end-perdin" class="control-label">sampai:</label>
 								{{ csrf_field()}}
-								<input type="text" name="end-perdin" class="form-control" placeholder="6 Jun 2018 13:00">
+								<input type="text" name="berakhir-perdin" class="form-control" placeholder="13:00">
 							</div>
-
-
 
 
 
@@ -141,7 +158,7 @@
 				<div class="panel-collapse collapse" id="collapse4">
 			
 
-					<form class="panel-body" id="cuti-form" action="{{ route('test.store') }}" method="post">
+					<form class="panel-body" id="cuti-form" action="{{ route('submit.mesin_rusak') }}" method="post">
 					<div class="form-row">
 							<div class="form-group col-md-6" style="padding-left: 0">
 								<label for="awal-rusak" class="control-label">Dari tanggal:</label>

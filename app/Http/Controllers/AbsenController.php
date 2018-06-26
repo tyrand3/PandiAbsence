@@ -46,7 +46,7 @@ class AbsenController extends Controller
     public function apiAbsence(Request $request)
     {
         $absence =Absence::select('Name','Date','Clock In','Clock Out','Late','Early','absent','OT Time',
-        'Work Time','Department','ATT_Time')->whereBetween('Date',['2017-13-16', '2018-12-16']);
+        'Work Time','Department','ATT_Time')->whereBetween('Date',['2017-13-16', '2017-13-16']);
         
         return Datatables::of($absence)
             
@@ -202,16 +202,52 @@ class AbsenController extends Controller
 
 
   
-    public function getData(Request $request)
+    public function getDataLibur(Request $request)
     {
-        echo $request['nama-libur'];
-        echo $request['awal-cuti'];
-        echo $request['akhir-cuti'];
-        echo $request['berlaku-cuti'];
-          
+        $nama_libur= $request->all();
+        $awal_libur= $request['awal-libur'];
+        $akhir_libur= $request['akhir-libur'];
+        $berlaku_libur= $request['berlaku-libur'];
+
+        
+       
+        
+      $absences = Absence::findOrfail(2);
+
+        
+     
+
+    }
+    
+    public function getDataCuti(Request $request)
+    {
+        $nama_cuti= $request['nama-cuti'];
+        $awal_cuti= $request['awal-cuti'];
+        $akhir_cuti= $request['akhir-cuti'];
+        $berlaku_cuti= $request['berlaku-cuti'];
+
+    }
+
+    public function getDataMesinRusak(Request $request)
+    {
+        
+        $awal_rusak= $request['awal-rusak'];
+        $akhir_rusak= $request['akhir-rusak'];
+        $berlaku_rusak= $request['berlaku-rusak'];
+       
+
+    }
+
+    public function getDataPerdin(Request $request)
+    {
+        $nama_perdin= $request['nama-perdin'];
+        $akhir_perdin= $request['akhir-perdin'];
+        $berakhir_perdin= $request['berakhir-perdin'];  
+        $berlaku_perdin= $request['berlaku-perdin'];
         
 
     }
+
 
     public function stores()
     {

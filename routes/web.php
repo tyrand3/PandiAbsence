@@ -48,5 +48,13 @@ Route::post('import', 'AbsenController@absenceImport')->name('absence.import');
 Route::get('/test', 'AbsenController@apiAbsenceDate')->name('api.absenceDate');
 Route::post('/test', 'Controller@getData')->name('test.store');
 
-//Route::get('/test2', 'AbsenController@test');
-Route::post('/test2', 'AbsenController@getData')->name('test.store');
+
+
+//Route untuk manage manual
+Route::post('/submit', 'AbsenController@getDataLibur')->name('submit.libur');
+Route::post('/submitcuti', 'AbsenController@getDataCuti')->name('submit.cuti');
+Route::post('/submitmesinrusak', 'AbsenController@getDataMesinRusak')->name('submit.mesin_rusak');
+
+Route::post('/submitperdin', 'AbsenController@getDataPerdin')->name('submit.perdin');
+
+
