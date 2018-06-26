@@ -1,3 +1,7 @@
+<!-- Senpai,
+In case enggak paham cara pakenya, coba cek dokumentasi DateRangePicker ya
+http://www.daterangepicker.com -->
+
 @extends('base')
 
 @section('css')
@@ -61,7 +65,7 @@
 							{{ csrf_field()}}
 							<input type="text" name="berlaku-cuti" class="form-control" placeholder="Meita">
 						</div>
-						<button type="submit" class="btn btn-primary pull-right">Submit</button>
+						<button type="submit" class="btn btn-success pull-right">Submit</button>
 					</form>
 				</div>
 			</div>
@@ -88,7 +92,7 @@
              {{ csrf_field()}}
              <input type="text" name="berlaku-perdin" class="form-control" placeholder="Meita">
            </div>
-           <button type="submit" class="btn btn-primary pull-right">Submit</button>
+           <button type="submit" class="btn btn-warning pull-right">Submit</button>
          </form>
        </div>
      </div>
@@ -109,12 +113,11 @@
             {{ csrf_field()}}
             <input type="text" name="berlaku-rusak" class="form-control" placeholder="Meita" value="">
           </div>
-          <button type="submit" class="btn btn-primary pull-right">Submit</button>
+          <button type="submit" class="btn btn-danger pull-right">Submit</button>
         </form>
       </div>
     </div>
   </div>
-</div>
 </div>
 @endsection
 
@@ -137,46 +140,5 @@
       }
     });
   });
-	// $( function() {
- //        $("input[name*=awal], input[name*=akhir]").datetimepicker({
- //            format: "DD MMM YYYY",
- //            showClear: true,
- //            useCurrent: false
- //        });
-
- //        $("#begin-perdin, #end-perdin").datetimepicker({
- //            format: "DD MMM YYYY HH:mm",
- //        	useCurrent: false,
- //        	sideBySide: true
- //        });
-
- //        $("#awal-cuti").on("dp.change", function (e) {
- //            $('#akhir-cuti').data("DateTimePicker").minDate(e.date);
- //        });
- //        $("#akhir-cuti").on("dp.change", function (e) {
- //            $('#awal-cuti').data("DateTimePicker").maxDate(e.date);
- //        });
-
- //        $("#awal-libur").on("dp.change", function (e) {
- //            $('#akhir-libur').data("DateTimePicker").minDate(e.date);
- //        });
- //        $("#akhir-libur").on("dp.change", function (e) {
- //            $('#awal-libur').data("DateTimePicker").maxDate(e.date);
- //        });
-
- //        $("#awal-rusak").on("dp.change", function (e) {
- //            $('#akhir-rusak').data("DateTimePicker").minDate(e.date);
- //        });
- //        $("#akhir-rusak").on("dp.change", function (e) {
- //            $('#awal-rusak').data("DateTimePicker").maxDate(e.date);
- //        });
-
- //        $("#begin-perdin").on("dp.change", function (e) {
- //            $('#end-perdin').data("DateTimePicker").minDate(e.date);
- //        });
- //        $("#end-perdin").on("dp.change", function (e) {
- //            $('#begin-perdin').data("DateTimePicker").maxDate(e.date);
- //        });
- //    });
 </script>
 @endsection
