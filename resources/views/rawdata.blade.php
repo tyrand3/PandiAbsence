@@ -1,10 +1,5 @@
 @extends('base')
 
-<!-- @section('css')
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
-@endsection -->
-
 @section('content')
 <div class="container">
 
@@ -19,19 +14,12 @@
             </div>
             <div class="panel-body table-responsive">
                 <div class="row" id="date-filter">
-               
-                    <div class="col-md-3 col-md-offset-5 form-group">
-                        <label for="fromDate" class="form-label">Dari tanggal:</label>
-                        <input type="text" name="fromDate" id="fromDate" class="form-control">
-                    </div>
-                    <div class="col-md-3 form-group">
-                        <label for="toDate" class="form-label">Hingga tanggal:</label>
-                        <input type="text" name="toDate" id="toDate" class="form-control">
+                    <div class="col-md-4 col-md-offset-4 form-group">
+                        <label for="date-range" class="form-label">Filter dengan tanggal:</label>
+                        <input type="text" name="date-range" id="date-range" class="form-control">
                     </div>
                     <div class="col-md-1 form-group">
-
                         <label <a href="{{ route('api.absenceDate') }}" for="date-submit" class="form-label">&nbsp;</label>
-                             
                         <input type="submit" onclick="addData()" name="date-submit" id="date-submit" value="Filter" class="btn btn-info">
                     </div>
                 </div>
@@ -67,16 +55,40 @@
 @endsection
 
 @section('js')>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript">
+    
+  //   $(function() {
+
+  //   var start = moment().subtract(29, 'days');
+  //   var end = moment();
+
+  //   function cb(start, end) {
+  //     $('#range-libur span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+  //   }
+
+  //   $('#range-libur').daterangepicker({
+  //     startDate: start,
+  //     endDate: end,
+  //     ranges: {
+  //      'Hari ini': [moment(), moment()],
+  //      'Kemarin': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+  //      'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+  //      'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+  //      'This Month': [moment().startOf('month'), moment().endOf('month')],
+  //      'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+  //    }
+  //  }, cb);
+
+  //   cb(start, end);
+
+  // });
     $( function() {
-        $("#fromDate, #toDate").datepicker({
-            dateFormat: "dd M yy",
-            changeMonth: true,
-            changeYear: true
+        $("#date-range").daterangepicker({
+            locale: {
+                format: "DD MMM YYYY",
+                cancelLabel: 'Clear'
+            }
         });
-        $("#fromDate, #toDate").datepicker($.datepicker.regional['id']);
-        $("#fromDate, #toDate").datepicker().datepicker("setDate", new Date());
     });
 
     var table = $('#absences-table').DataTable({

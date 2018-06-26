@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,9 +17,9 @@
     {{-- dataTables --}}
     <link href="{{ asset('assets/datatables/css/dataTables.bootstrap.min.css') }}" rel="stylesheet">
 
-      {{-- SweetAlert2 --}}
-      <script src="{{ asset('assets/sweetalert2/sweetalert2.min.js') }}"></script>
-      <link href="{{ asset('assets/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet">
+    {{-- SweetAlert2 --}}
+    <script src="{{ asset('assets/sweetalert2/sweetalert2.min.js') }}"></script>
+    <link href="{{ asset('assets/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet">
 
     <!-- IE10 viewport hack <font></font>r Surface/desktop Windows 8 bug -->
     <link href="{{ asset('assets/bootstrap/css/ie10-viewport-bug-workaround.css') }}" rel="stylesheet">
@@ -31,8 +31,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 
     <!-- Datepicker -->
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker3.css" /> -->
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
     @yield('css')
 
@@ -44,10 +43,10 @@
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-  </head>
+  <![endif]-->
+</head>
 
-  <body>
+<body>
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
@@ -56,41 +55,37 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
-          </button>
-          <div class="navbar-brand">Absensi Pandi</div>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse bg-dark navbar-dark">
-          <ul class="nav navbar-nav">
-            <li class="nav-item {{ Request::is('summary') ? 'active' : 'no' }} "><a href="{{ url('/summary') }}">Ringkasan</a></li>
-            <li class="nav-item {{ Request::is('absence') ? 'active' : 'no' }} "><a href="{{ url('/absence') }}">Data Mentah</a></li>
-            <li class="nav-item {{ Request::is('manage') ? 'active' : 'no' }} "><a href="{{ url('/manage') }}">Kelola manual</a></li>
-        </div><!--/.nav-collapse -->
-      </div>
-    </nav>
+        </button>
+        <div class="navbar-brand">Absensi Pandi</div>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse bg-dark navbar-dark">
+      <ul class="nav navbar-nav">
+        <li class="nav-item {{ Request::is('summary') ? 'active' : 'no' }} "><a href="{{ url('/summary') }}">Ringkasan</a></li>
+        <li class="nav-item {{ Request::is('absence') ? 'active' : 'no' }} "><a href="{{ url('/absence') }}">Data Mentah</a></li>
+        <li class="nav-item {{ Request::is('manage') ? 'active' : 'no' }} "><a href="{{ url('/manage') }}">Kelola manual</a></li>
+    </div><!--/.nav-collapse -->
+</div>
+</nav>
 
 @yield('content')
+<script src="{{ asset('assets/jquery/jquery-1.12.4.min.js') }}"></script>
+<script src="{{ asset('assets/bootstrap/js/bootstrap.min.js') }}"></script>
 
+{{-- dataTables --}}
+<script src="{{ asset('assets/dataTables/js/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('assets/dataTables/js/dataTables.bootstrap.min.js') }}"></script>
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="{{ asset('assets/jquery/jquery-1.12.4.min.js') }}"></script>
-    <script src="{{ asset('assets/bootstrap/js/bootstrap.min.js') }}"></script>
+{{-- Validator --}}
+<script src="{{ asset('assets/validator/validator.min.js') }}"></script>
 
-    {{-- dataTables --}}
-    <script src="{{ asset('assets/dataTables/js/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('assets/dataTables/js/dataTables.bootstrap.min.js') }}"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="{{ asset('assets/bootstrap/js/ie10-viewport-bug-workaround.js') }}"></script>
 
-    {{-- Validator --}}
-    <script src="{{ asset('assets/validator/validator.min.js') }}"></script>
+<!-- Datepicker -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="{{ asset('assets/bootstrap/js/ie10-viewport-bug-workaround.js') }}"></script>
-
-    <!-- Datepicker -->
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    
 @yield('js')
 
-  </body>
+</body>
 </html>
