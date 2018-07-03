@@ -6,7 +6,6 @@ http://www.daterangepicker.com -->
 
 @section('content')
 <div class="container">
-
   <div class="row">
     <div class="col-md-12">
       <div class="panel panel-default">
@@ -85,25 +84,19 @@ http://www.daterangepicker.com -->
     serverSide: true,
     ajax: "{{ route('api.absence') }}",
     columns: [
-
     {data: 'Name', name: 'Name'},
     {data: 'Date', name: 'Date'},
-                        // {data: 'Timetable', name: 'Timetable'},
-                        // {data: 'On Duty', name: 'On Duty'},
-                        // {data: 'Off Duty', name: 'Off Duty'},
-                        {data: 'Clock In', name: 'Clock In'},
-                        {data: 'Clock Out', name: 'Clock Out'},
-                        {data: 'Late', name: 'Late'},
-                        {data: 'Early', name: 'Early'},
-                        {data: 'absent', name: 'absent'},
-                        {data: 'OT Time', name: 'OT Time'},
-                        {data: 'Work Time', name: 'Work Time'},
-                        {data: 'Department', name: 'Department'}, 
-                        {data: 'ATT_Time', name: 'ATT_Time'}, 
-                 //       {data: 'action', name: 'action', orderable: false, searchable: false}
-
-                 ]
-               });
+    {data: 'Clock In', name: 'Clock In'},
+    {data: 'Clock Out', name: 'Clock Out'},
+    {data: 'Late', name: 'Late'},
+    {data: 'Early', name: 'Early'},
+    {data: 'absent', name: 'absent'},
+    {data: 'OT Time', name: 'OT Time'},
+    {data: 'Work Time', name: 'Work Time'},
+    {data: 'Department', name: 'Department'}, 
+    {data: 'ATT_Time', name: 'ATT_Time'}, 
+    ]
+  });
 
 
 
