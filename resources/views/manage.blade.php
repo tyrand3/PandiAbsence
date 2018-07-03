@@ -1,3 +1,7 @@
+<!-- Senpai,
+In case enggak paham cara pakenya, coba cek dokumentasi DateRangePicker ya
+http://www.daterangepicker.com -->
+
 @extends('base')
 
 @section('css')
@@ -71,7 +75,7 @@
 							{{ csrf_field()}}
 							<input type="text" name="berlaku-cuti" class="form-control" placeholder="Meita">
 						</div>
-						<button type="submit" class="btn btn-primary pull-right">Submit</button>
+						<button type="submit" class="btn btn-success pull-right">Submit</button>
 					</form>
 				</div>
 			</div>
@@ -95,6 +99,7 @@
 
 						<div class="form-row">
 							<div class="form-group col-md-6" style="padding-left: 0">
+<<<<<<< HEAD
 								<label for="begin-perdin" class="control-label">Dari tanggal:</label>
 								{{ csrf_field()}}
 								<input type="text" name="awal-perdin" class="form-control" placeholder="05 Jun 2018">
@@ -188,6 +193,49 @@
 			</div>
 		</div>
 	</div>
+=======
+                <label for="nama-perdin" class="control-label">Alasan:</label>
+                {{ csrf_field()}}
+                <input type="text" name="nama-perdin" class="form-control" placeholder="contoh: Rapat di Kemkominfo">
+              </div>
+              <div class="form-group col-md-6" style="padding-right: 0">
+                <label for="range-perdin" class="control-label">Periode:</label>
+                {{ csrf_field()}}
+                <input type="text" name="range-perdin" id="range-perdin" class="form-control">
+              </div>
+            </div>
+            <div class="form-group">
+             <label for="berlaku-perdin" class="control-label">Berlaku bagi:</label>
+             {{ csrf_field()}}
+             <input type="text" name="berlaku-perdin" class="form-control" placeholder="Meita">
+           </div>
+           <button type="submit" class="btn btn-warning pull-right">Submit</button>
+         </form>
+       </div>
+     </div>
+     <div class="panel panel-danger" id="mesin-rusak-panel">
+      <div class="panel-heading">
+       <h2 class="panel-title"><a data-toggle="collapse" data-parent="accordion" href="#collapse4">Mesin Rusak</a></h2>
+     </div>
+     <div class="panel-collapse collapse" id="collapse4">
+       <form class="panel-body" id="rusak-form" action="{{ route('test.store') }}" method="post">
+         <div class="form-row">
+          <div class="form-group col-md-6" style="padding-left: 0">
+            <label for="range-rusak" class="control-label">Periode:</label>
+            {{ csrf_field()}}
+            <input type="text" name="range-rusak" id="range-rusak" class="form-control" >
+          </div>
+          <div class="form-group col-md-6" style="padding-right: 0">
+            <label for="berlaku-rusak" class="control-label">Berlaku Bagi:</label>
+            {{ csrf_field()}}
+            <input type="text" name="berlaku-rusak" class="form-control" placeholder="Meita" value="">
+          </div>
+          <button type="submit" class="btn btn-danger pull-right">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+>>>>>>> 3295a9866789696cebdbd918df37e74e67d7b6d3
 </div>
 @endsection
 
@@ -210,46 +258,5 @@
       }
     });
   });
-	// $( function() {
- //        $("input[name*=awal], input[name*=akhir]").datetimepicker({
- //            format: "DD MMM YYYY",
- //            showClear: true,
- //            useCurrent: false
- //        });
-
- //        $("#begin-perdin, #end-perdin").datetimepicker({
- //            format: "DD MMM YYYY HH:mm",
- //        	useCurrent: false,
- //        	sideBySide: true
- //        });
-
- //        $("#awal-cuti").on("dp.change", function (e) {
- //            $('#akhir-cuti').data("DateTimePicker").minDate(e.date);
- //        });
- //        $("#akhir-cuti").on("dp.change", function (e) {
- //            $('#awal-cuti').data("DateTimePicker").maxDate(e.date);
- //        });
-
- //        $("#awal-libur").on("dp.change", function (e) {
- //            $('#akhir-libur').data("DateTimePicker").minDate(e.date);
- //        });
- //        $("#akhir-libur").on("dp.change", function (e) {
- //            $('#awal-libur').data("DateTimePicker").maxDate(e.date);
- //        });
-
- //        $("#awal-rusak").on("dp.change", function (e) {
- //            $('#akhir-rusak').data("DateTimePicker").minDate(e.date);
- //        });
- //        $("#akhir-rusak").on("dp.change", function (e) {
- //            $('#awal-rusak').data("DateTimePicker").maxDate(e.date);
- //        });
-
- //        $("#begin-perdin").on("dp.change", function (e) {
- //            $('#end-perdin').data("DateTimePicker").minDate(e.date);
- //        });
- //        $("#end-perdin").on("dp.change", function (e) {
- //            $('#begin-perdin').data("DateTimePicker").maxDate(e.date);
- //        });
- //    });
 </script>
 @endsection

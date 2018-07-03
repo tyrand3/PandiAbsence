@@ -46,7 +46,7 @@ class AbsenController extends Controller
     public function apiAbsence(Request $request)
     {
         $absence =Absence::select('Name','Date','Clock In','Clock Out','Late','Early','absent','OT Time',
-        'Work Time','Department','ATT_Time')->whereBetween('Date',['2017-13-16', '2017-13-16']);
+        'Work Time','Department','ATT_Time');
         
         return Datatables::of($absence)
             
@@ -281,6 +281,40 @@ class AbsenController extends Controller
         $berakhir_perdin= $request['berakhir-perdin'];  
         $berlaku_perdin= $request['berlaku-perdin'];
         
+        $absence= Absence::whereBetween('Date', ['2017-12-04', '2017-12-05'])->where('Name','Abdul')->update([
+            
+            'Hari_libur' => 'cuti/izin sakit',
+            //'On Duty' => NULL,
+           // 'Off Duty' => NULL,
+            
+            'Clock In' => NULL,
+            'Clock Out' => NULL,
+            'Late' => NULL,
+            'Early' => NULL,
+            'OT Time' => NULL,
+            'Work Time' => NULL,
+            'ATT_Time' => NULL,
+            'absent' => 0,
+            ]);
+        
+        
+        $absence= Absence::whereBetween('Date', ['2017-12-04', '2017-12-05'])->where('Name','Abdul')->update([
+            
+            'Hari_libur' => 'cuti/izin sakit',
+            //'On Duty' => NULL,
+           // 'Off Duty' => NULL,
+            
+            'Clock In' => NULL,
+            'Clock Out' => NULL,
+            'Late' => NULL,
+            'Early' => NULL,
+            'OT Time' => NULL,
+            'Work Time' => NULL,
+            'ATT_Time' => NULL,
+            'absent' => 0,
+            ]);
+        
+     
 
     }
 
