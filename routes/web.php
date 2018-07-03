@@ -21,9 +21,11 @@ Route::get('/absence', function () {
     return view('rawdata');
 });
 
-Route::get('/manage', function () {
-    return view('manage');
-});
+// Route::get('/manage', function () {
+//     return view('manage');
+// });
+
+Route::get('/manage', 'AbsenController@optionDropdown');
 
 Route::get('/summary', function () {
     return view('summary');
@@ -51,6 +53,7 @@ Route::post('/test', 'Controller@getData')->name('test.store');
 
 
 //Route untuk manage manual
+Route::get('/api/manage', 'AbsenController@test')->name('submit.test');
 Route::post('/submit', 'AbsenController@getDataLibur')->name('submit.libur');
 Route::post('/submitcuti', 'AbsenController@getDataCuti')->name('submit.cuti');
 Route::post('/submitmesinrusak', 'AbsenController@getDataMesinRusak')->name('submit.mesin_rusak');

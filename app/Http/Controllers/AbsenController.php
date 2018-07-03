@@ -42,6 +42,16 @@ class AbsenController extends Controller
         return $absence;
     }
 
+    public function optionDropdown() {
+        $entries = Absence::select('Name', 'Department')->orderBy('department', 'asc')->distinct()->get();
+        return view('manage', ['entries' => $entries]);
+    }
+
+    public function test() {
+        $entries = Absence::select('Name', 'Department')->orderBy('department', 'asc')->distinct()->get();
+        return $entries;
+    }
+
 
     public function apiAbsence(Request $request)
     {

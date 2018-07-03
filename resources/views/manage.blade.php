@@ -37,7 +37,11 @@ http://www.daterangepicker.com -->
             <div class="form-group">
               <label for="berlaku-libur" class="control-label">Berlaku bagi:</label>
               {{ csrf_field()}}
-              <select multiple class="selectpicker form-control" data-live-search="true" id="berlaku-libur" data-actions-box="true"></select>
+              <select multiple class="selectpicker form-control" data-live-search="true" id="berlaku-libur" data-actions-box="true">
+                @foreach ($entries as $entry)
+                  <option value="{{ $entry->Name }}">{{ $entry->Name }} ({{ $entry->Department }})</option>
+                @endforeach
+              </select>
             </div>
             <button type="submit" class="btn btn-primary pull-right">Submit</button>
           </form>
@@ -65,9 +69,9 @@ http://www.daterangepicker.com -->
               <label for="berlaku-cuti" class="control-label">Berlaku bagi:</label>
               {{ csrf_field()}}
               <select multiple class="selectpicker form-control" data-live-search="true" id="berlaku-cuti" data-actions-box="true">
-                <option>Ann</option>
-                <option>Bob</option>
-                <option>Charlie</option>
+                @foreach ($entries as $entry)
+                  <option value="{{ $entry->Name }}">{{ $entry->Name }} ({{ $entry->Department }})</option>
+                @endforeach
               </select>
             </div>
             <button type="submit" class="btn btn-success pull-right">Submit</button>
@@ -96,42 +100,45 @@ http://www.daterangepicker.com -->
               <label for="berlaku-perdin" class="control-label">Berlaku bagi:</label>
               {{ csrf_field()}}
               <select multiple class="selectpicker form-control" data-live-search="true" id="berlaku-perdin" data-actions-box="true">
-                <option>Ann</option>
-                <option>Bob</option>
-                <option>Charlie</option>
+                @foreach ($entries as $entry)
+                  <option value="{{ $entry->Name }}">{{ $entry->Name }} ({{ $entry->Department }})</option>
+                @endforeach
               </select>
             </div>
             <button type="submit" class="btn btn-warning pull-right">Submit</button>
           </form>
         </div>
       </div>
-<div class="panel panel-danger" id="mesin-rusak-panel">
-  <div class="panel-heading">
-    <h2 class="panel-title"><a data-toggle="collapse" data-parent="accordion" href="#collapse4">Mesin Rusak</a></h2>
-  </div>
-  <div class="panel-collapse collapse" id="collapse4">
-    <form class="panel-body" id="rusak-form" action="{{ route('test.store') }}" method="post">
-      <div class="form-row">
-        <div class="form-group col-md-6" style="padding-left: 0">
-          <label for="range-rusak" class="control-label">Periode:</label>
-          {{ csrf_field()}}
-          <input type="text" name="range-rusak" id="range-rusak" class="form-control" >
+      <div class="panel panel-danger" id="mesin-rusak-panel">
+        <div class="panel-heading">
+          <h2 class="panel-title"><a data-toggle="collapse" data-parent="accordion" href="#collapse4">Mesin Rusak</a></h2>
         </div>
-        <div class="form-group col-md-6" style="padding-right: 0">
-          <label for="berlaku-rusak" class="control-label">Berlaku Bagi:</label>
-          {{ csrf_field()}}
-              <select multiple class="selectpicker form-control" data-live-search="true" id="berlaku-rusak" data-actions-box="true">
-                <option>Ann</option>
-                <option>Bob</option>
-                <option>Charlie</option>
-              </select>
+        <div class="panel-collapse collapse" id="collapse4">
+          <form class="panel-body" id="rusak-form" action="{{ route('test.store') }}" method="post">
+            <div class="form-row">
+              <div class="form-group" style="padding-left: 0">
+                <label for="range-rusak" class="control-label">Periode:</label>
+                {{ csrf_field()}}
+                <input type="text" name="range-rusak" id="range-rusak" class="form-control" >
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group" style="padding-right: 0">
+                <label for="berlaku-rusak" class="control-label">Berlaku Bagi:</label>
+                {{ csrf_field()}}
+                <select multiple class="selectpicker form-control" data-live-search="true" id="berlaku-rusak" data-actions-box="true">
+                  @foreach ($entries as $entry)
+                    <option value="{{ $entry->Name }}">{{ $entry->Name }} ({{ $entry->Department }})</option>
+                  @endforeach
+                </select>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-danger pull-right">Submit</button>
+          </form>
         </div>
-        <button type="submit" class="btn btn-danger pull-right">Submit</button>
-      </form>
+      </div>
     </div>
   </div>
-</div>
-</div>
 </div>
 @endsection
 
@@ -153,16 +160,5 @@ http://www.daterangepicker.com -->
       }
     });
   });
-
-  var table = $('#berlaku-libur').DataTable({
-    processing: true,
-    serverSide: true,
-    ajax: "{{ route('api.summary') }}",
-    columns: [
-    {data: 'Name', name: 'Name'},
-    //{data: 'Department', name: 'Department'}, 
-    ]
-  });
-
 </script>
 @endsection
