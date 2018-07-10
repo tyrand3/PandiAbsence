@@ -19,6 +19,10 @@ class AbsenController extends Controller
         return view('rawdata');
     }
 
+    public function destroy($id)
+    {
+        Absence::destroy($id);
+    }
 
     public function store(Request $request)
     {
@@ -55,15 +59,15 @@ class AbsenController extends Controller
 
     public function apiAbsence(Request $request)
     {
-        $absence =Absence::select('Name','Date','Clock In','Clock Out','Late','Early','absent','OT Time',
+        $absence =Absence::select('id','Name','Date','Clock In','Clock Out','Late','Early','absent','OT Time',
         'Work Time','Department','ATT_Time');
         
         return Datatables::of($absence)
             
             ->addColumn('action', function($absence){
                 return '<a href="#" class="btn btn-info btn-xs"><i class="glyphicon glyphicon-eye-open"></i> Show</a> ' .
-                       '<a onclick="editForm('. $absence['emp no'] .')" class="btn btn-primary btn-xs"><i class="glyphicon glyphicon-edit"></i> Edit</a> ' .
-                       '<a onclick="deleteData('. $absence['emp no'] .')" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
+                       '<a onclick="editForm('. $absence['id'] .')" class="btn btn-primary btn-xs"><i class="glyphicon glyphicon-edit"></i> Edit</a> ' .
+                       '<a onclick="deleteData('. $absence['id'] .')" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
             })
             ->rawColumns(['action'])->make(true);
     }
@@ -222,9 +226,9 @@ class AbsenController extends Controller
 
 
         
-        $absence= Absence::whereBetween('Date', ['2017-12-1', '2017-12-1'])->update([
+        $absence= Absence::whereBetween('Date', ['awal-libur', 'akhir-libur'])->update([
             
-            'Hari_libur' => 'Libur'+'MAULID NABI',
+            'Hari_libur' => $nama_libur,
             //'On Duty' => NULL,
            // 'Off Duty' => NULL,
             
@@ -254,7 +258,7 @@ class AbsenController extends Controller
 
         $absence= Absence::whereBetween('Date', ['2017-12-04', '2017-12-05'])->where('Name','Abdul')->update([
             
-            'Hari_libur' => 'cuti/izin sakit',
+            'Hari_libur' => $nama_cuti,
             //'On Duty' => NULL,
            // 'Off Duty' => NULL,
             
@@ -274,6 +278,20 @@ class AbsenController extends Controller
 
     }
 
+public function update(Request $request, $id)
+{
+    $absence=Absence::find($id);
+    $absence->Name=$request['Name'];
+    $absence->Date=$request['Date'];
+    $absence['ATT_Time']=$request['ATT_Time'];
+    $absence['absent']=$request['absent'];
+    
+    $absence->update();
+
+    return $absence;
+}
+
+
     public function getDataMesinRusak(Request $request)
     {
         
@@ -281,6 +299,23 @@ class AbsenController extends Controller
         $akhir_rusak= $request['akhir-rusak'];
         $berlaku_rusak= $request['berlaku-rusak'];
        
+        $absence= Absence::whereBetween('Date', ['2017-12-04', '2017-12-05'])->where('Name','Abdul')->update([
+            
+            'Hari_libur' => 'Mesin Rusak',
+            //'On Duty' => NULL,
+           // 'Off Duty' => NULL,
+            
+            'Clock In' => NULL,
+            'Clock Out' => NULL,
+            'Late' => NULL,
+            'Early' => NULL,
+            'OT Time' => NULL,
+            'Work Time' => NULL,
+            'ATT_Time' => NULL,
+            'absent' => 0,
+            ]);
+        
+
 
     }
 
@@ -290,40 +325,33 @@ class AbsenController extends Controller
         $akhir_perdin= $request['akhir-perdin'];
         $berakhir_perdin= $request['berakhir-perdin'];  
         $berlaku_perdin= $request['berlaku-perdin'];
+        $check=Absence::whereBetween('Date', ['2017-12-04', '2017-12-05'])->where('Name','Abdul')->whereNotNull('Absence');
         
-        $absence= Absence::whereBetween('Date', ['2017-12-04', '2017-12-05'])->where('Name','Abdul')->update([
-            
-            'Hari_libur' => 'cuti/izin sakit',
-            //'On Duty' => NULL,
-           // 'Off Duty' => NULL,
-            
-            'Clock In' => NULL,
-            'Clock Out' => NULL,
-            'Late' => NULL,
-            'Early' => NULL,
-            'OT Time' => NULL,
-            'Work Time' => NULL,
-            'ATT_Time' => NULL,
-            'absent' => 0,
-            ]);
+
+        if($check->isEmpty())
+        {
+            $absence= Absence::whereBetween('Date', ['2017-12-04', '2017-12-05'])->where('Name','Abdul')->update([
+        
+       
+                'Hari_libur' => NULL,
+                //'On Duty' => NULL,
+               // 'Off Duty' => NULL,
+                
+                'Clock In' => NULL,
+                'Clock Out' => NULL,
+                'Late' => NULL,
+                'Early' => NULL,
+                'OT Time' => NULL,
+                'Work Time' => NULL,
+                'ATT_Time' => NULL,
+                'absent' => 0,
+                ]);
+        }
+
         
         
-        $absence= Absence::whereBetween('Date', ['2017-12-04', '2017-12-05'])->where('Name','Abdul')->update([
-            
-            'Hari_libur' => 'cuti/izin sakit',
-            //'On Duty' => NULL,
-           // 'Off Duty' => NULL,
-            
-            'Clock In' => NULL,
-            'Clock Out' => NULL,
-            'Late' => NULL,
-            'Early' => NULL,
-            'OT Time' => NULL,
-            'Work Time' => NULL,
-            'ATT_Time' => NULL,
-            'absent' => 0,
-            ]);
         
+      
      
 
     }
@@ -338,5 +366,7 @@ class AbsenController extends Controller
     $user->password = Hash::make($input['password']);
     $user->save();
     }
+
+
 
 }

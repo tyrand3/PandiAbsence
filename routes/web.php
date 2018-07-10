@@ -60,4 +60,5 @@ Route::post('/submitmesinrusak', 'AbsenController@getDataMesinRusak')->name('sub
 
 Route::post('/submitperdin', 'AbsenController@getDataPerdin')->name('submit.perdin');
 
-
+Route::get('contact/{id}/edit','AbsenController@edit');
+Route::post('/update', 'AbsenController@update');

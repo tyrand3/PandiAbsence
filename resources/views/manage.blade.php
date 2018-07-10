@@ -64,7 +64,13 @@ http://www.daterangepicker.com -->
                 {{ csrf_field()}}
                 <input type="text" name="range-cuti" id="range-cuti" class="form-control">
               </div>
+              <div class="form-group col-md-6" style="padding-right: 0">
+                <label for="range-cuti" class="control-label">Periode:</label>
+                {{ csrf_field()}}
+                <input type="text" name="range-cuti" id="range-cuti" class="form-control">
+              </div>
             </div>
+            
             <div class="form-group">
               <label for="berlaku-cuti" class="control-label">Berlaku bagi:</label>
               {{ csrf_field()}}
@@ -74,6 +80,7 @@ http://www.daterangepicker.com -->
                 @endforeach
               </select>
             </div>
+            
             <button type="submit" class="btn btn-success pull-right">Submit</button>
           </form>
         </div>
@@ -144,21 +151,5 @@ http://www.daterangepicker.com -->
 
 @section('js')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
-<script type="text/javascript">
-  $( function() {
-    $("#range-libur, #range-cuti, #range-rusak").daterangepicker({
-      locale: {
-        format: "DD MMM YYYY"
-      }
-    });
 
-    $("#range-perdin").daterangepicker({
-      timePicker: true,
-      timePicker24Hour: true,
-      locale: {
-        format: "DD MMM YYYY HH:mm"
-      }
-    });
-  });
-</script>
 @endsection

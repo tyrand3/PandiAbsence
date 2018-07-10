@@ -93,27 +93,6 @@
     $('.modal-title').text('Add Absence');
   }
 
-  function editForm(id) {
-    save_method = 'edit';
-    $('input[name=_method]').val('PATCH');
-    $('#modal-form form')[0].reset();
-    $.ajax({
-      url: "{{ url('absence') }}" + '/' + id + "/edit",
-      type: "GET",
-      dataType: "JSON",
-      success: function(data) {
-        $('#modal-form').modal('show');
-        $('.modal-title').text('Edit Absence');
-
-        $('#id').val(data.id);
-        $('#name').val(data.name);
-        $('#email').val(data.email);
-      },
-      error : function() {
-        alert("Nothing Data");
-      }
-    });
-  }
 
   function deleteData(id){
     var csrf_token = $('meta[name="csrf-token"]').attr('content');

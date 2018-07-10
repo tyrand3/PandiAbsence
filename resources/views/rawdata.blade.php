@@ -34,6 +34,7 @@ http://www.daterangepicker.com -->
                 <th>Work Time</th>
                 <th>Department</th>
                 <th>ATT_Time</th>
+                <th></th>
               </tr>
             </thead>
             <tbody></tbody>
@@ -44,7 +45,7 @@ http://www.daterangepicker.com -->
   </div>
 
   @include('forms')
-
+  @include('form')
 </div> <!-- /container -->
 @endsection
 
@@ -95,9 +96,93 @@ http://www.daterangepicker.com -->
     {data: 'Work Time', name: 'Work Time'},
     {data: 'Department', name: 'Department'}, 
     {data: 'ATT_Time', name: 'ATT_Time'}, 
+    {data: 'action', name: 'action', orderable: false, searchable: false}
     ]
   });
 
+  function editForm(id) {
+        save_method = 'edit';
+        $('input[name=_method]').val('PATCH');
+        $('#modal-form form')[0].reset();
+        $.ajax({
+         
+          url: "{{ url('absence') }}" + '/' + id + "/edit", type: "GET",
+          dataType: "JSON",
+          success: function(data) {
+            $('#modal-form').modal('show');
+            $('.modal-title').text('Edit Absence');
+            $('#id').val(data.id);
+            $('#Name').val(data.Name);
+            $('#Date').val(data.Date);
+            $('#ATT_Time').val(data.ATT_Time);
+            $('#absent').val(data.absent);
+          },
+          error : function() {
+              alert("Nothing Data");
+          }
+        });
+      }
+ 
+       
+     $(function(){
+            $('#modal-form form').validator().on('submit', function (e) {
+                if (!e.isDefaultPrevented()){
+                    var id = $('#id').val();
+                    if (save_method == 'add') url = "{{ url('absence') }}";
+                    else url = "{{ url('absence') . '/' }}" + id;
+
+                    
+                    $.ajax({
+                        url : url,
+                        type : "POST",
+                        data : $('#modal-form form').serialize(),
+                        success : function($data) {
+                            $('#modal-form').modal('hide');
+                            table.ajax.reload();
+                        },
+                        error : function(){
+                            alert('Oops! Something Error!');
+                        }
+                    });
+                    return false;
+                }
+            });
+        });
+      function deleteData(id){
+    var csrf_token = $('meta[name="csrf-token"]').attr('content');
+    swal({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      type: 'warning',
+      showCancelButton: true,
+      cancelButtonColor: '#d33',
+      confirmButtonColor: '#3085d6',
+      confirmButtonText: 'Yes, delete it!'
+    }).then(function () {
+      $.ajax({
+        url : "{{ url('absence') }}" + '/' + id,
+        type : "POST",
+        data : {'_method' : 'DELETE', '_token' : csrf_token},
+        success : function(data) {
+          table.ajax.reload();
+          swal({
+            title: 'Success!',
+            text: data.message,
+            type: 'success',
+            timer: '1500'
+          })
+        },
+        error : function () {
+          swal({
+            title: 'Oops...',
+            text: data.message,
+            type: 'error',
+            timer: '1500'
+          })
+        }
+      });
+    });
+  }
 
 
   function eximForm() {
@@ -106,4 +191,6 @@ http://www.daterangepicker.com -->
 
   }
 </script>
+
+
 @endsection
