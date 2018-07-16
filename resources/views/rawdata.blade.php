@@ -190,6 +190,9 @@ http://www.daterangepicker.com -->
     $('#modal-exim form')[0].reset();
 
   }
+
+  
+  
 </script>
 
 

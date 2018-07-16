@@ -37,7 +37,7 @@ http://www.daterangepicker.com -->
             <div class="form-group">
               <label for="berlaku-libur" class="control-label">Berlaku bagi:</label>
               {{ csrf_field()}}
-              <select multiple class="selectpicker form-control" data-live-search="true" id="berlaku-libur" data-actions-box="true">
+              <select name=arraynama[] multiple class="selectpicker form-control" data-live-search="true" id="berlaku-libur" data-actions-box="true">
                 @foreach ($entries as $entry)
                   <option value="{{ $entry->Name }}">{{ $entry->Name }} ({{ $entry->Department }})</option>
                 @endforeach
@@ -47,6 +47,9 @@ http://www.daterangepicker.com -->
           </form>
         </div>
       </div>
+
+
+
       <div class="panel panel-success" id="cuti-panel">
         <div class="panel-heading">
           <h2 class="panel-title"><a data-toggle="collapse" data-parent="accordion" href="#collapse2">Cuti/Izin</a></h2>
@@ -143,6 +146,10 @@ http://www.daterangepicker.com -->
             <button type="submit" class="btn btn-danger pull-right">Submit</button>
           </form>
         </div>
+
+
+
+        
       </div>
     </div>
   </div>

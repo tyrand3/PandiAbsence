@@ -84,8 +84,8 @@ class AbsenController extends Controller
             
             ->addColumn('action', function($absence){
                 return '<a href="#" class="btn btn-info btn-xs"><i class="glyphicon glyphicon-eye-open"></i> Show</a> ' .
-                       '<a onclick="editForm('. $absence['emp no'] .')" class="btn btn-primary btn-xs"><i class="glyphicon glyphicon-edit"></i> Edit</a> ' .
-                       '<a onclick="deleteData('. $absence['emp no'] .')" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
+                       '<a onclick="editForm('. $absence['id'] .')" class="btn btn-primary btn-xs"><i class="glyphicon glyphicon-edit"></i> Edit</a> ' .
+                       '<a onclick="deleteData('. $absence['id'] .')" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
             })
             ->rawColumns(['action'])->make(true);
     }
@@ -222,11 +222,19 @@ class AbsenController extends Controller
         $awal_libur= $request['awal-libur'];
         $akhir_libur= $request['akhir-libur'];
         $berlaku_libur= $request['berlaku-libur'];
+      
+       $arrays= $request->input('arraynama');
 
 
+        foreach ($arrays as $array)
+        {
+            
+      
+
+     
 
         
-        $absence= Absence::whereBetween('Date', ['awal-libur', 'akhir-libur'])->update([
+        $absence= Absence::where('Name',$array)->whereBetween('Date', ['2017-05-05', '2018-12-11'])->update([
             
             'Hari_libur' => $nama_libur,
             //'On Duty' => NULL,
@@ -244,7 +252,7 @@ class AbsenController extends Controller
         
      
 
-        
+        }
      
 
     }
@@ -325,34 +333,14 @@ public function update(Request $request, $id)
         $akhir_perdin= $request['akhir-perdin'];
         $berakhir_perdin= $request['berakhir-perdin'];  
         $berlaku_perdin= $request['berlaku-perdin'];
-        $check=Absence::whereBetween('Date', ['2017-12-04', '2017-12-05'])->where('Name','Abdul')->whereNotNull('Absence');
-        
 
-        if($check->isEmpty())
-        {
-            $absence= Absence::whereBetween('Date', ['2017-12-04', '2017-12-05'])->where('Name','Abdul')->update([
-        
+        $request->input('picker');
+
        
-                'Hari_libur' => NULL,
-                //'On Duty' => NULL,
-               // 'Off Duty' => NULL,
-                
-                'Clock In' => NULL,
-                'Clock Out' => NULL,
-                'Late' => NULL,
-                'Early' => NULL,
-                'OT Time' => NULL,
-                'Work Time' => NULL,
-                'ATT_Time' => NULL,
-                'absent' => 0,
-                ]);
-        }
 
+        $check=Absence::whereBetween('Date', ['2017-12-04', '2017-12-05'])->where('Name',$role)->whereNotNull('Absence');
         
-        
-        
-      
-     
+
 
     }
 
